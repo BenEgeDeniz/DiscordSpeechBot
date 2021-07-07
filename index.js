@@ -392,13 +392,13 @@ function process_commands_query(query, mapKey, userid) {
 
     let out = null;
 
-    const regex = /^music ([a-zA-Z]+)(.+?)?$/;
+    const regex = /^(.*)music ([a-zA-Z]+)(.+?)?$/;
     const m = query.toLowerCase().match(regex);
     if (m && m.length) {
         console.log(m);
-        const cmd = (m[1]||'').trim();
+        const cmd = (m[2]||'').trim();
         console.log(cmd);
-        const args = (m[2]||'').trim();
+        const args = (m[3]||'').trim();
 
         switch(cmd) {
             case 'help':
