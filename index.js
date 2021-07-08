@@ -284,6 +284,7 @@ function getHelpString() {
     let out = '**VOICE COMMANDS:**\n'
         out += '```'
         out += 'music help\n'
+        out += 'music leave\n'
         out += 'music play [random, favorites, <genre> or query]\n'
         out += 'music skip\n'
         out += 'music pause/resume\n'
@@ -428,6 +429,9 @@ function process_commands_query(query, mapKey, userid) {
                 break;
             case 'hello':
                 out = 'hello back =)'
+                break;
+            case 'leave':
+                out = _CMD_LEAVE;
                 break;
             case 'favorites':
                 out = _CMD_FAVORITES;
