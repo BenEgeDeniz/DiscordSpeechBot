@@ -218,12 +218,12 @@ discordClient.on('message', async (msg) => {
         const mapKey = msg.guild.id;
         if (msg.content.trim().toLowerCase() == _CMD_JOIN) {
             if (!msg.member.voice.channelID) {
-                msg.reply('Error: please join a voice channel first.')
+                msg.reply('Error: Join a voice channel first.')
             } else {
                 if (!guildMap.has(mapKey))
                     await connect(msg, mapKey)
                 else
-                    msg.reply('Already connected')
+                    msg.reply('Already connected.')
             }
         } else if (msg.content.trim().toLowerCase() == _CMD_LEAVE) {
             if (guildMap.has(mapKey)) {
@@ -239,7 +239,7 @@ discordClient.on('message', async (msg) => {
         }
         else if ( PLAY_CMDS.indexOf( msg.content.trim().toLowerCase().split('\n')[0].split(' ')[0] ) >= 0 ) {
             if (!msg.member.voice.channelID) {
-                msg.reply('Error: please join a voice channel first.')
+                msg.reply('Error: Join a voice channel first.')
             } else {
                 if (!guildMap.has(mapKey))
                     await connect(msg, mapKey)
@@ -286,7 +286,7 @@ function getHelpString() {
         out += 'music help\n'
         out += 'music leave\n'
         out += 'music play [random, favorites, <genre> or query]\n'
-        out += 'music skip\n'
+        out += 'music skip/next\n'
         out += 'music pause/resume\n'
         out += 'music shuffle\n'
         out += 'music genres\n'
@@ -343,7 +343,7 @@ async function connect(msg, mapKey) {
         msg.reply('connected!')
     } catch (e) {
         console.log('connect: ' + e)
-        msg.reply('Error: unable to join your voice channel.');
+        msg.reply('Error: Unable to join your voice channel.');
         throw e;
     }
 }
@@ -406,6 +406,9 @@ function process_commands_query(query, mapKey, userid) {
                 out = _CMD_HELP;
                 break;
             case 'skip':
+                out = _CMD_SKIP;
+                break;
+            case 'next':
                 out = _CMD_SKIP;
                 break;
             case 'shuffle':
