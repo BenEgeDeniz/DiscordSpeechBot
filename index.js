@@ -448,6 +448,7 @@ function process_commands_query(query, mapKey, userid) {
                 }
                 break;
             case 'play':
+                voice_Connection.play('iwillplay.mp3', { volume: 1 });
             case 'player':
                 switch(args) {
                     case 'random':
